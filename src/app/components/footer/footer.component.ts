@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { RequestService } from 'src/shared/services/request.service';
+import { ShowLoaderService } from 'src/shared/services/show-loader.service';
+import { DataService } from 'src/shared/services/data.service';
 
 @Component({
   selector: 'app-footer',
@@ -9,14 +11,17 @@ import { RequestService } from 'src/shared/services/request.service';
 })
 export class FooterComponent implements OnInit {
   date: Date;
-  showProgress: boolean;
 
   objPagination = {
     length: '-',
-    pageSize: '-',
+    pageSize: 10,
   };
 
-  constructor(private request: RequestService) {
+  constructor(
+    private request: RequestService,
+    private loaderService: ShowLoaderService,
+    private dataService: DataService
+  ) {
     this.date = new Date();
   }
   ngOnInit() {
@@ -32,12 +37,13 @@ export class FooterComponent implements OnInit {
       .getHeroes(event)
       .pipe(
         finalize(() => {
-          this.showProgress = false;
+          this.loaderService.isLoading(false);
         })
       )
       .subscribe((x: any) => {
         this.objPagination.length = x.data.total;
         this.objPagination.pageSize = x.data.limit;
+        this.dataService.listData(x.data.results);
       });
   }
 }

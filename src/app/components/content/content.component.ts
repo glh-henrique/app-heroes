@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
-import { RequestService } from 'src/shared/services/request.service';
-import { finalize } from 'rxjs/operators';
+import { ShowLoaderService } from 'src/shared/services/show-loader.service';
+import { DataService } from 'src/shared/services/data.service';
 
 @Component({
   selector: 'app-content',
@@ -13,10 +13,27 @@ import { finalize } from 'rxjs/operators';
 export class ContentComponent implements OnInit {
   faCoffee = faPlus;
   showProgress = true;
+  arrayHeroes: Array<any>;
 
-  constructor(public dialog: MatDialog, private request: RequestService) {}
+  constructor(
+    public dialog: MatDialog,
+    private loaderService: ShowLoaderService,
+    private dataService: DataService
+  ) {}
 
   ngOnInit() {
+    this.loaderService.carregando$.subscribe((x: boolean) => {
+      this.showProgress = x;
+    });
+
+    this.dataService.data$.subscribe((x: any) => {
+      this.showProgress = true;
+      this.arrayHeroes = x;
+    });
+  }
+
+  mountUrlImg(thumb) {
+    return `${thumb.path}.${thumb.extension}`;
   }
 
   openDialog() {

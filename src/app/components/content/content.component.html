@@ -1,18 +1,19 @@
-<div [ngClass]="{centerLoader: showProgress}">
+<div [ngClass]="{ centerLoader: showProgress }">
   <mat-progress-bar
     mode="indeterminate"
     *ngIf="showProgress"
   ></mat-progress-bar>
   <div class="containerCards" *ngIf="!showProgress">
-    <mat-list>
+    <mat-list *ngFor="let heroe of arrayHeroes">
       <mat-list-item>
         <div class="containerInfo">
           <img
             class="imgHeroes"
-            src="https://lumiere-a.akamaihd.net/v1/images/avengers-characterthumbnail-ironman_96bd4819.jpeg?region=0%2C0%2C300%2C300"
+            [src]="mountUrlImg(heroe.thumbnail)"
+            onerror="this.onerror = null; this.src = 'assets/img/shield.jpg'"
             alt="Heroes"
           />
-          Iron-man ed234234t
+          {{ heroe.name }}
         </div>
         <span class="spacer"></span>
         <div class="containerButtoms">

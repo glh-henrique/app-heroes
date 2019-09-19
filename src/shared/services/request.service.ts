@@ -13,7 +13,7 @@ export class RequestService {
 
   ObjParams = {
     length: 100,
-    pageIndex: 1,
+    pageIndex: 0,
     pageSize: 10,
     previousPageIndex: 1,
   };
