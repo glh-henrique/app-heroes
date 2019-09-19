@@ -4,9 +4,11 @@
   margin: 0;
   padding: 0;
 
-  body {
-    overflow: hidden;
+  .mat-dialog-actions {
+    float: right;
+  }
 
+  body {
     .spacer {
       flex: 1 1 auto;
     }
@@ -25,18 +27,22 @@
 
       .content {
         grid-area: main;
-        height: calc(100vh - 114px);
-        overflow: auto;
+        min-height: calc(100vh - 155px);
         padding: 10px 15px;
 
+        .centerLoader {
+          display: grid;
+          align-content: center;
+          height: calc(100vh - 160px);
+        }
+
         @media (max-width: 599px) {
-          height: calc(100vh - 106px);
+          min-height: calc(100vh - 147px);
         }
       }
 
       .footer {
         grid-area: footer;
-        height: 30px;
         background-color: #eee;
       }
     }

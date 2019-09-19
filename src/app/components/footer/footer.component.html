@@ -1,5 +1,12 @@
 <div class="statusBar">
   <span class="date">{{ date | date }}</span>
   <span class="spacer"></span>
-  <span class="version">V1.0</span>
+  <div class="pagination">
+    <mat-paginator
+      [length]="objPagination.length"
+      [pageSize]="objPagination.pageSize"
+      (page)="changeItens($event)"
+    >
+    </mat-paginator>
+  </div>
 </div>
