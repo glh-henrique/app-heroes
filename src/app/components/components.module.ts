@@ -42,7 +42,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   entryComponents: [ContentComponent, PopupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
   ],
 })
 export class ComponentsModule {}

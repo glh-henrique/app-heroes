@@ -1,6 +1,21 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
+<h1 mat-dialog-title>Hero Details</h1>
 <div mat-dialog-content>
-  My favorite animal is:
+  <div class="heroInfo">
+    <div class="img">
+      <img
+        class="imgHero"
+        [src]="generateUrlImageService.mountUrlImg(hero.thumbnail)"
+        onerror="this.onerror = null; this.src = 'assets/img/shield.jpg'"
+        alt="Heroes"
+      />
+    </div>
+    <div class="info">
+      <h5>{{ hero.name }}</h5>
+      <p>
+        {{ hero.description === '' ? defaultDescription : hero.description }}
+      </p>
+    </div>
+  </div>
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Close</button>

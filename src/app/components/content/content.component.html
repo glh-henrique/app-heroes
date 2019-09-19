@@ -4,23 +4,23 @@
     *ngIf="showProgress"
   ></mat-progress-bar>
   <div class="containerCards" *ngIf="!showProgress">
-    <mat-list *ngFor="let heroe of arrayHeroes">
+    <mat-list *ngFor="let hero of arrayHeroes">
       <mat-list-item>
         <div class="containerInfo">
           <img
             class="imgHeroes"
-            [src]="mountUrlImg(heroe.thumbnail)"
+            [src]="generateUrlImageService.mountUrlImg(hero.thumbnail)"
             onerror="this.onerror = null; this.src = 'assets/img/shield.jpg'"
             alt="Heroes"
           />
-          {{ heroe.name }}
+          {{ hero.name }}
         </div>
         <span class="spacer"></span>
         <div class="containerButtoms">
           <button
             mat-stroked-button
             aria-label="Example icon-button with a heart icon"
-            (click)="openDialog()"
+            (click)="getDetails(hero)"
           >
             Show More
           </button>

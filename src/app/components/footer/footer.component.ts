@@ -29,6 +29,7 @@ export class FooterComponent implements OnInit {
   }
 
   changeItens($event) {
+    this.loaderService.isLoading(true);
     this.getItens($event);
   }
 

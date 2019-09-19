@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
 import { ShowLoaderService } from 'src/shared/services/show-loader.service';
 import { DataService } from 'src/shared/services/data.service';
+import { GenerateUrlImageService } from 'src/shared/services/generate-url-image.service';
 
 @Component({
   selector: 'app-content',
@@ -14,8 +15,10 @@ export class ContentComponent implements OnInit {
   faCoffee = faPlus;
   showProgress = true;
   arrayHeroes: Array<any>;
+  hero: any;
 
   constructor(
+    public generateUrlImageService: GenerateUrlImageService,
     public dialog: MatDialog,
     private loaderService: ShowLoaderService,
     private dataService: DataService
@@ -27,20 +30,20 @@ export class ContentComponent implements OnInit {
     });
 
     this.dataService.data$.subscribe((x: any) => {
-      this.showProgress = true;
       this.arrayHeroes = x;
     });
   }
 
-  mountUrlImg(thumb) {
-    return `${thumb.path}.${thumb.extension}`;
+  getDetails(hero) {
+    this.hero = hero;
+    this.openDialog();
   }
 
   openDialog() {
     this.dialog.closeAll();
     this.dialog.open(PopupComponent, {
       width: '80%',
-      data: { name: 'asdasdasd', animal: 'asdasdasdasd' },
+      data: this.hero
     });
   }
 }
