@@ -27,9 +27,6 @@
       }
 
       .content {
-        display: flex;
-        align-items: center;
-        align-content: center;
         grid-area: main;
         min-height: calc(100vh - 155px);
         padding: 10px 15px;
