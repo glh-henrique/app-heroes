@@ -17,15 +17,33 @@ export class RequestService {
     pageSize: 10,
     previousPageIndex: 1,
   };
+  securityParams: string;
 
-  constructor(private http: HttpClient, private hash: TokenService) {}
-
-  getHeroes(params = this.ObjParams) {
-    const paramsObj = `ts=${environmentKey.TS}&apikey=${
+  constructor(private http: HttpClient, private hash: TokenService) {
+    this.securityParams = `ts=${environmentKey.TS}&apikey=${
       environmentKey.API_KEY
-    }&hash=${this.hash.getHash()}&offset=${params.pageIndex}&limit=${
-      params.pageSize
-    }`;
-    return this.http.get(`${this.objurl.urlHeroes}${paramsObj}`);
+    }&hash=${this.hash.getHash()}`;
+  }
+
+  getPaginatedHeroes(params = this.ObjParams) {
+    if (params.pageIndex > 0) {
+      params.pageIndex = params.pageIndex + 9;
+    }
+    const paginatedParams = `&offset=${params.pageIndex}&limit=${params.pageSize}`;
+    return this.http.get(
+      `${this.objurl.urlHeroes}${this.securityParams}${paginatedParams}`
+    );
+  }
+
+  getHeroesFilterbyName(name: string) {
+    let param: any;
+    if (name !== undefined) {
+      param = `nameStartsWith=${name}`;
+    } else {
+      param = `offset=${this.ObjParams.pageIndex}&limit=${this.ObjParams.pageSize}`;
+    }
+    return this.http.get(
+      `${this.objurl.urlHeroes}&${param}&${this.securityParams}`
+    );
   }
 }

@@ -1,7 +1,7 @@
 <div class="statusBar">
   <span class="date">{{ date | date }}</span>
   <span class="spacer"></span>
-  <div class="pagination">
+  <div class="pagination" *ngIf="showPagination">
     <mat-paginator
       [length]="objPagination.length"
       [pageSize]="objPagination.pageSize"

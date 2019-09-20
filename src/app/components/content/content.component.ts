@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from './popup/popup.component';
-import { ShowLoaderService } from 'src/shared/services/show-loader.service';
+import { ShowService } from 'src/shared/services/show.service';
 import { DataService } from 'src/shared/services/data.service';
 import { GenerateUrlImageService } from 'src/shared/services/generate-url-image.service';
 
@@ -20,7 +20,7 @@ export class ContentComponent implements OnInit {
   constructor(
     public generateUrlImageService: GenerateUrlImageService,
     public dialog: MatDialog,
-    private loaderService: ShowLoaderService,
+    private loaderService: ShowService,
     private dataService: DataService
   ) {}
 
@@ -30,6 +30,7 @@ export class ContentComponent implements OnInit {
     });
 
     this.dataService.data$.subscribe((x: any) => {
+      this.arrayHeroes = new Array<any>();
       this.arrayHeroes = x;
     });
   }
@@ -43,7 +44,8 @@ export class ContentComponent implements OnInit {
     this.dialog.closeAll();
     this.dialog.open(PopupComponent, {
       width: '80%',
-      data: this.hero
+      maxWidth: '660px',
+      data: this.hero,
     });
   }
 }

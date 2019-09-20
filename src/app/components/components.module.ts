@@ -18,6 +18,7 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
   ],
   entryComponents: [ContentComponent, PopupComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

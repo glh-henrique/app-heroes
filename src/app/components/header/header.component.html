@@ -2,5 +2,8 @@
   <mat-toolbar-row>
     <span>App Heroes</span>
     <span class="spacer"></span>
+    <mat-form-field class="inputSearchHero">
+      <input matInput (keyup)="searchAHero($event)" placeholder="Search hero" />
+    </mat-form-field>
   </mat-toolbar-row>
 </mat-toolbar>

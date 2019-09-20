@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 import { RequestService } from 'src/shared/services/request.service';
-import { ShowLoaderService } from 'src/shared/services/show-loader.service';
+import { ShowService } from 'src/shared/services/show.service';
 import { DataService } from 'src/shared/services/data.service';
 
 @Component({
@@ -16,16 +16,21 @@ export class FooterComponent implements OnInit {
     length: '-',
     pageSize: 10,
   };
+  showPagination = true;
 
   constructor(
     private request: RequestService,
-    private loaderService: ShowLoaderService,
+    private loaderService: ShowService,
     private dataService: DataService
   ) {
     this.date = new Date();
   }
   ngOnInit() {
     this.getItens();
+
+    this.loaderService.pagination$.subscribe((x: boolean) => {
+      this.showPagination = x;
+    });
   }
 
   changeItens($event) {
@@ -35,7 +40,7 @@ export class FooterComponent implements OnInit {
 
   private getItens(event?) {
     this.request
-      .getHeroes(event)
+      .getPaginatedHeroes(event)
       .pipe(
         finalize(() => {
           this.loaderService.isLoading(false);
