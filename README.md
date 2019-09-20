@@ -1,6 +1,12 @@
 # AppHeroes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+Project is intended to list and consult Marvel heroes. With the App you can consult the available details about the story, as well as see statistics about the hero
+
+Angular version 8.2.0.
+
+## Installing dependencies
+
+Run `npm install`
 
 ## Development server
 
@@ -22,6 +28,9 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## TODO
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Refactor Services
+- Implements throttle
+
+
